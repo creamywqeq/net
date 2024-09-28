@@ -2136,9 +2136,9 @@ next-intl@^3.12.2:
     negotiator "^0.6.3"
     use-intl "^3.12.2"
 
-"next@^10.0.0 || ^11.0.0 || ^12.0.0 || ^13.0.0 || ^14.0.0", next@14.2.3:
+"next@^10.0.0 || ^11.0.0 || ^12.0.0 || ^13.0.0 || ^14.0.0", next@^14.2.3:
   version "14.2.3"
-  resolved "https://registry.npmjs.org/next/-/next-14.2.3.tgz"
+  resolved "https://registry.npmmirror.com/next/-/next-14.2.3.tgz"
   integrity sha512-dowFkFTR8v79NPJO4QsBUtxv0g9BrS/phluVpMAt2ku7H+cbcBJlopXjkWlwxrk/xGqMemr7JkGPGemPrLLX7A==
   dependencies:
     "@next/env" "14.2.3"
