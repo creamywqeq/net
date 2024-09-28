@@ -2,7 +2,6 @@ import React from "react";
 import { FaJava, FaReact } from "react-icons/fa";
 import { FaVuejs } from "react-icons/fa";
 import { LuActivity, LuGraduationCap } from "react-icons/lu";
-import moonImage from '@/public/moon.JPG';
 import moonImage from '@/public/moon.jpg';
 import breadditImage from "@/public/breaddit.png";
 import gameHubImage from "@/public/game-hub.png";
