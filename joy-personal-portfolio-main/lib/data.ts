@@ -53,7 +53,7 @@ export const experiencesData = [
         description:
         "He studied in-depth research in the fields of software engineering, computer networking, and web backend, and graduated from Southwest University of Science and Technology with a bachelor's degree",
         icon: React.createElement(LuGraduationCap),
-        date: "2022.6 - 2026.9 ",
+        date: "2022.7 - 2026.9 ",
     },
     {
         title: "Frontend Intern",
