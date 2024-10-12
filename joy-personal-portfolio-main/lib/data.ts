@@ -92,9 +92,9 @@ export const experiencesData = [
 
 export const experiencesDataZn = [
     {
-        "title": "软件工程硕士学士",
-        "location": "西南科技大学大学",
-        "description": "在软件工程，计算机网络，网页后端领域深度研究，以学士学位在西南科技大学毕业",
+        "title": "即将软件工程学士",
+        "location": "西南科技大学",
+        "description": "在软件工程，计算机网络，网页后端领域深度研究，即将以学士学位在西南科技大学毕业",
         icon: React.createElement(LuGraduationCap),
         "date": "2022年9月 - 2026年6月"
     },
