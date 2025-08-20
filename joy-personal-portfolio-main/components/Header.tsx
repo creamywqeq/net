@@ -46,7 +46,12 @@ function Header() {
                     "text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200": activeSection !== link.name,
                   }
                 )}
-                onClick={() => {
+                onClick={(e) => {
+                  e.preventDefault()
+                  const el = document.querySelector(link.hash)
+                  if (el) {
+                    ;(el as HTMLElement).scrollIntoView({ behavior: "smooth", block: "start" })
+                  }
                   setActiveSection(link.name)
                   setTimeOfLastClick(Date.now())
                 }}

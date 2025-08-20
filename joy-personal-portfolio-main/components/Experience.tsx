@@ -36,7 +36,7 @@ export default function Experience({ isMobile }: { isMobile: boolean }) {
     activeLocale == "zh" ? experiencesDataZn : experiencesData
 
   return (
-    <section className="sm:mb-40 relative mb-20">
+    <section id="experience" className="sm:mb-40 relative mb-20 scroll-mt-28">
       {/* iOS风格的背景装饰 */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute top-20 right-1/4 w-96 h-96 bg-gradient-to-br from-emerald-400/20 to-teal-500/20 rounded-full blur-3xl animate-float" />
