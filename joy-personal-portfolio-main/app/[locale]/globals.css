@@ -1,3 +1,268 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* iOS 26风格的全局样式 */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  /* iOS风格的毛玻璃卡片 */
+  .ios-glass {
+    @apply bg-white/10 dark:bg-gray-950/10 backdrop-blur-[20px] border border-white/20 dark:border-gray-800/20 shadow-2xl shadow-black/[0.08] dark:shadow-black/[0.3];
+  }
+  
+  /* iOS风格的渐变背景 */
+  .ios-gradient {
+    @apply bg-gradient-to-br from-blue-50/50 via-white/30 to-purple-50/50 dark:from-gray-900/50 dark:via-gray-800/30 dark:to-gray-900/50;
+  }
+  
+  /* iOS风格的按钮 */
+  .ios-button {
+    @apply px-6 py-3 rounded-[16px] bg-gradient-to-r from-blue-500 to-purple-600 text-white font-medium shadow-lg shadow-blue-500/25 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/30 hover:scale-105 active:scale-95;
+  }
+  
+  /* iOS风格的输入框 */
+  .ios-input {
+    @apply px-4 py-3 rounded-[12px] bg-white/20 dark:bg-gray-800/20 backdrop-blur-[10px] border border-white/30 dark:border-gray-700/30 focus:border-blue-400/50 dark:focus:border-blue-400/50 transition-all duration-300 focus:ring-2 focus:ring-blue-400/20;
+  }
+
+  /* 代码能力展示卡片 */
+  .skill-card {
+    @apply bg-gradient-to-br from-white/20 to-white/10 dark:from-gray-800/20 dark:to-gray-800/10 backdrop-blur-[15px] border border-white/30 dark:border-gray-700/30 rounded-[16px] p-4 transition-all duration-300 hover:scale-105 hover:shadow-ios-glow;
+  }
+
+  /* 技术栈标签 */
+  .tech-tag {
+    @apply px-3 py-1.5 text-sm font-medium bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-blue-600 dark:text-blue-400 rounded-full border border-blue-500/30 dark:border-blue-400/30 backdrop-blur-[10px] transition-all duration-300 hover:scale-105;
+  }
+
+  /* 项目卡片 */
+  .project-card {
+    @apply ios-glass rounded-[24px] overflow-hidden transition-all duration-500 hover:shadow-ios-glow;
+  }
+}
+
+@layer utilities {
+  /* 高级毛玻璃效果 */
+  .backdrop-blur-ios {
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+  }
+  
+  /* iOS风格的阴影 */
+  .shadow-ios {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), 0 4px 16px rgba(0, 0, 0, 0.08);
+  }
+  
+  .shadow-ios-dark {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 4px 16px rgba(0, 0, 0, 0.3);
+  }
+  
+  .shadow-ios-glow {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3), 0 8px 32px rgba(0, 0, 0, 0.12);
+  }
+  
+  /* 渐变文字 */
+  .text-gradient {
+    @apply bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent;
+  }
+  
+  /* 高级动画 */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  .animate-bounce-subtle {
+    animation: bounce-subtle 3s ease-in-out infinite;
+  }
+
+  .animate-rotate-slow {
+    animation: rotate-slow 20s linear infinite;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse-slow 4s ease-in-out infinite;
+  }
+}
+
+/* 自定义动画关键帧 */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+  }
+  to {
+    box-shadow: 0 0 30px rgba(147, 51, 234, 0.8);
+  }
+}
+
+@keyframes bounce-subtle {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes rotate-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300/50 dark:bg-gray-600/50 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400/70 dark:bg-gray-500/70;
+}
+
+/* 代码能力展示的特殊效果 */
+.code-ability {
+  position: relative;
+  overflow: hidden;
+}
+
+.code-ability::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.code-ability:hover::before {
+  left: 100%;
+}
+
+/* 技术指标动画 */
+.tech-metric {
+  animation: slideInUp 0.6s ease-out forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+@keyframes slideInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 响应式网格布局 */
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+/* 高级悬停效果 */
+.hover-lift {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px) scale(1.02);
+}
+
+/* 渐变边框效果 */
+.gradient-border {
+  position: relative;
+  background: linear-gradient(white, white) padding-box,
+              linear-gradient(45deg, #3b82f6, #8b5cf6) border-box;
+  border: 2px solid transparent;
+}
+
+.dark .gradient-border {
+  background: linear-gradient(#1f2937, #1f2937) padding-box,
+              linear-gradient(45deg, #3b82f6, #8b5cf6) border-box;
+}
+
+/* 主题切换扩散动画 - 苹果风格 */
+.theme-transition {
+  transition: background-color 0.8s cubic-bezier(0.25, 0.1, 0.25, 1), 
+              color 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.theme-transition * {
+  transition: background-color 0.8s cubic-bezier(0.25, 0.1, 0.25, 1), 
+              color 0.8s cubic-bezier(0.25, 0.1, 0.25, 1), 
+              border-color 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* 苹果风格的扩散动画 */
+@keyframes theme-spread-apple {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.95;
+  }
+  20% {
+    opacity: 0.8;
+  }
+  60% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+  }
+}
+
+.theme-spread-apple {
+  animation: theme-spread-apple 0.8s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+
+/* 微妙的阴影效果 */
+.theme-shadow {
+  filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.1));
+}
+
+.dark .theme-shadow {
+  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.1));
+}

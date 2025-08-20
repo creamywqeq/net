@@ -2,10 +2,7 @@
 
 import Image from "next/image"
 import { motion } from "framer-motion"
-import { BsArrowRight, BsLinkedin } from "react-icons/bs"
-import { HiDownload } from "react-icons/hi"
 import { FaGithubSquare } from "react-icons/fa"
-import Link from "next/link"
 import { Source_Code_Pro } from "next/font/google"
 import { useLocale } from "next-intl"
 import { useSectionInView } from "@/lib/hooks"
@@ -26,16 +23,19 @@ export default function Intro() {
   return (
     <section
       ref={ref}
-      className="mb-10 max-w-[50rem] text-center sm:mb-0 scroll-mt-28 pt-[7rem]"
+      className="mb-10 max-w-[50rem] text-center sm:mb-0 scroll-mt-28 pt-[7rem] relative"
       id="home"
     >
-      <div className="flex items-center justify-center">
+      {/* iOS风格的背景装饰 */}
+      <div className="absolute inset-0 -z-10 overflow-hidden">
+        <div className="absolute top-20 left-1/4 w-72 h-72 bg-gradient-to-br from-blue-400/20 to-purple-500/20 rounded-full blur-3xl animate-float" />
+        <div className="absolute bottom-20 right-1/4 w-96 h-96 bg-gradient-to-br from-purple-400/20 to-pink-500/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
+      </div>
+
+      <div className="flex items-center justify-center mb-8">
         <div className="relative">
-          <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ type: "tween", duration: 0.2 }}
-          >
+          {/* iOS风格的毛玻璃头像容器 */}
+          <div className="relative p-2 ios-glass rounded-[24px]">
             <Image
               src="/proflie.jpg"
               alt="developer-image"
@@ -43,61 +43,61 @@ export default function Intro() {
               height="250"
               quality="95"
               priority={true}
-              className="h-28 w-28 rounded-full object-cover border-[0.35rem] border-white shadow-xl"
+              className="h-28 w-28 rounded-[20px] object-cover shadow-ios dark:shadow-ios-dark"
             />
-          </motion.div>
-          <motion.span
-            onHoverStart={() => {
+          </div>
+          
+          {/* iOS风格的问候表情 */}
+          <span
+            onMouseEnter={() => {
               console.log("sound")
               playHover()
             }}
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            whileHover={{ scale: 1.25, rotate: 15 }}
-            className="absolute text-4xl bottom-0 right-0 hover:rotate-2"
-            transition={{
-              type: "spring",
-              duration: 0.7,
-              delay: 0.1,
-              stiffness: 125,
-            }}
+            className="absolute text-4xl bottom-2 right-2 ios-glass rounded-full p-2 shadow-ios dark:shadow-ios-dark cursor-pointer hover:scale-125 hover:rotate-15 transition-all duration-300"
           >
             👋
-          </motion.span>
+          </span>
         </div>
       </div>
-      <motion.h1
-        className="mb-10 mt-4 px-4 text-2xl font-medium !leading-[1.5] sm:text-4xl"
-        initial={{ opacity: 0, y: 100 }}
-        animate={{ opacity: 1, y: 0 }}
-      >
-        <span className={`${sourceCodePro.className} text-sm tracking-wider `}>
+
+      <div className="mb-10 mt-4 px-6 sm:px-8 text-2xl font-medium !leading-[1.6] sm:text-4xl relative">
+        {/* iOS风格的问候语 */}
+        <span className={`${sourceCodePro.className} text-sm tracking-wider text-gradient font-medium`}>
           {t("hello_im")}
         </span>
         
-        {/* 名字部分 - 静态，不会动 */}
-        <h1 className="text-center text-4xl font-bold tracking-tight sm:text-5xl mb-4">
+        {/* iOS风格的名字 */}
+        <h1 className="text-center text-4xl font-bold tracking-tight sm:text-5xl mb-6 text-gradient">
           {t("name")}
         </h1>
 
-        {/* 打字动画部分 - 只有这部分会动 */}
-        <div className="text-center mb-4">
+        {/* iOS风格的打字动画容器 */}
+        <div className="ios-glass rounded-[24px] p-8 sm:p-10 mb-8 mx-auto max-w-2xl">
           <span
-            className={`${sourceCodePro.className} text-sm tracking-wider`}
+            className={`${sourceCodePro.className} text-sm tracking-wider text-gray-600 dark:text-gray-300 mb-2 block`}
           >
-            I&apos;m a{" "}
+            {activeLocale === "zh" ? t("im_a") : "I'm a"}{" "}
           </span>
           <h2
             id="name"
-            className="text-center text-2xl sm:text-5xl lg:text-4xl lg:leading-normal font-extrabold"
+            className="text-center text-2xl sm:text-4xl lg:text-3xl lg:leading-normal font-extrabold text-gradient"
           >
             <TypeAnimation
-              sequence={[
-                "Light Catcher",
-                1000,
-                "Landscape photographer",
-                1000,
-              ]}
+              sequence={
+                activeLocale === "zh" 
+                  ? [
+                      "后端开发员",
+                      1000,
+                      "软件开发工程师",
+                      1000,
+                    ]
+                  : [
+                      "Backend Developer",
+                      1000,
+                      "Software Engineer",
+                      1000,
+                    ]
+              }
               wrapper="span"
               speed={50}
               repeat={Infinity}
@@ -105,73 +105,44 @@ export default function Intro() {
           </h2>
         </div>
         
-        <p>{t("short_intro")}</p>
+        {/* iOS风格的介绍文字 */}
+        <p className="ios-glass rounded-[20px] p-6 sm:p-7 text-gray-700 dark:text-gray-300">
+          {t("short_intro")}
+        </p>
+        
         {activeLocale === "en" && (
-          <p>
+          <p className="ios-glass rounded-[20px] p-6 sm:p-7 mt-5 text-gray-700 dark:text-gray-300">
             My focus is{" "}
-            <span className="italic font-bold">Photography</span>.
+            <span className="text-gradient font-bold">Full-Stack Development</span>.
           </p>
         )}
-      </motion.h1>
 
-      <motion.div
-        className="flex flex-col sm:flex-row items-center justify-center  gap-3 px-4 text-lg font-medium"
-        initial={{ opacity: 0, y: 100 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{
-          delay: 0.1,
-        }}
-      >
-        {/* <Link
-          href="#contact"
-          onClick={() => {
-            setActiveSection("Contact")
-            setTimeOfLastClick(Date.now())
-          }}
-          className="group bg-gray-900 px-4 py-2 text-sm sm:text-lg text-white sm:px-7 sm:py-3 flex items-center gap-2  rounded-full outline-none focus:scale-110 hover:scale-110 hover:bg-gray-950 active:scale-105 transition"
-        >
-          Contact me here
-          <BsArrowRight className="opacity-70 group-hover:translate-x-1 transition" />
-        </Link> */}
+        {activeLocale === "zh" && (
+          <p className="ios-glass rounded-[20px] p-6 sm:p-7 mt-5 text-gray-700 dark:text-gray-300">
+            {t("focus_photography")}
+          </p>
+        )}
+      </div>
 
-        {/* <Link
-          target="_blank"
-          className="bg-white py-2 px-3 text-sm text-gray-700 flex items-center gap-2 rounded-full focus:scale-[1.15] hover:scale-[1.15] hover:text-gray-950 active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10 dark:text-white/60"
-          href={
-            activeLocale == "en"
-              ? "/joy-fullstack-resume.pdf"
-              : "/前端开发-彭郁洁.pdf"
-          }
-          locale={false}
-        >
-          {t("download_cv")}
-          <HiDownload />
-        </Link> */}
-        {/* <a
-          className="bg-white p-3 text-gray-700 hover:text-gray-950 flex items-center gap-2 rounded-full focus:scale-[1.15] hover:scale-[1.15] active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10 dark:text-white/60"
-          href="https://www.linkedin.com/in/joy-yujiepeng/"
-          target="_blank"
-        >
-          <BsLinkedin />
-        </a> */}
-
+      {/* iOS风格的按钮组 */}
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-5 sm:gap-6 px-6 text-lg font-medium mt-4">
         <a
-          className="bg-white p-3 text-gray-700 flex items-center gap-2 text-[1.35rem] rounded-full focus:scale-[1.15] hover:scale-[1.15] hover:text-gray-950 active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10 dark:text-white/60"
+          className="ios-button inline-flex items-center gap-2"
           href="https://github.com/creamywqeq"
           target="_blank"
         >
           <FaGithubSquare />
+          GitHub
         </a>
+        
         <a
-          className=" bg-white py-2 px-3 text-sm text-gray-700 flex items-center gap-2  rounded-full focus:scale-[1.15] hover:scale-[1.15] hover:text-gray-950 active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10 dark:text-white/60"
+          className="ios-glass px-8 py-4 rounded-[18px] text-gray-700 dark:text-gray-300 hover:bg-white/20 dark:hover:bg-gray-800/20 transition-all duration-300 flex items-center gap-2"
           href=""
           target="_blank"
         >
           {t("blog")}
-
-          {/* <FaGithubSquare /> */}
         </a>
-      </motion.div>
+      </div>
     </section>
   )
 }

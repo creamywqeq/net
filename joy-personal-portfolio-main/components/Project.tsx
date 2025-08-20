@@ -4,10 +4,11 @@ import { useRef } from "react"
 import { projectsData } from "@/lib/data"
 import Image from "next/image"
 import { motion, useScroll, useTransform } from "framer-motion"
-import { FaGithubSquare } from "react-icons/fa"
+import { FaGithubSquare, FaExternalLinkAlt, FaCode, FaDatabase, FaServer } from "react-icons/fa"
 import Link from "next/link"
-import { FiExternalLink } from "react-icons/fi"
 import { useLocale } from "next-intl"
+import { useTranslations } from "next-intl"
+import TiltOnHover from "./TiltOnHover"
 
 type ProjectProps = (typeof projectsData)[number]
 
@@ -20,7 +21,9 @@ export default function Project({
   imageUrl,
   projectUrl,
   demoUrl,
-}: ProjectProps) {
+  showTechDetails = true,
+  hasCode = true,
+}: ProjectProps & { showTechDetails?: boolean; hasCode?: boolean }) {
   const ref = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -29,6 +32,7 @@ export default function Project({
   const scaleProgess = useTransform(scrollYProgress, [0, 1], [0.8, 1])
   const opacityProgess = useTransform(scrollYProgress, [0, 1], [0.6, 1])
   const activeLocale = useLocale()
+  const t = useTranslations("ProjectsSection")
 
   return (
     <motion.div
@@ -37,74 +41,136 @@ export default function Project({
         scale: scaleProgess,
         opacity: opacityProgess,
       }}
-      className="group mb-3 sm:mb-8 last:mb-0"
+      className="group mb-8 last:mb-0"
     >
-      <section className="bg-gray-100 max-w-[45rem] border border-black/5 rounded-lg overflow-hidden sm:pr-8 relative sm:h-[28rem]  transition sm:group-even:pl-8 dark:text-white dark:bg-white/10 ">
-        <div className="group pt-4 pb-7 px-5 sm:pl-10 sm:pr-2 sm:pt-10 sm:max-w-[50%] flex flex-col items-start gap-3 h-full sm:group-even:ml-[18rem]">
-          <div className="flex flex-col gap-3 items-start ">
-            <h3 className="text-2xl font-semibold group-hover:text-pink dark:group-hover:text-yellow hover:underline">
-              <Link href={demoUrl} target="_blank">
-                {activeLocale === "zh" ? title_zh : title}
-              </Link>
-            </h3>
+      <TiltOnHover>
+        <div className="ios-glass rounded-[24px] overflow-hidden relative">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-8">
+            {/* 项目信息 */}
+            <div className="flex flex-col gap-6">
+              <div className="space-y-4">
+                <h3 className="text-3xl font-bold text-gradient group-hover:scale-105 transition-transform duration-300">
+                  {demoUrl ? (
+                    <Link href={demoUrl} target="_blank" className="hover:underline">
+                      {activeLocale === "zh" ? title_zh : title}
+                    </Link>
+                  ) : (
+                    <span>{activeLocale === "zh" ? title_zh : title}</span>
+                  )}
+                </h3>
 
-            <div className="flex gap-3 text-sm text-gray-500 dark:text-gray-300">
-              {" "}
-              <Link
-                href={projectUrl}
-                target="_blank"
-                className="w-full flex items-center gap-1  hover:underline underline-offset-2"
+                {/* 技术栈标签 */}
+                <div className="flex flex-wrap gap-2">
+                  {tags.map((tag, index) => (
+                    <motion.span
+                      key={index}
+                      className="px-3 py-1.5 text-sm font-medium bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-blue-600 dark:text-blue-400 rounded-full border border-blue-500/30 dark:border-blue-400/30 backdrop-blur-[10px]"
+                      whileHover={{ scale: 1.05, y: -2 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
+                      {tag}
+                    </motion.span>
+                  ))}
+                </div>
+
+                {/* 项目描述 */}
+                <p className="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
+                  {activeLocale === "zh" ? desc_zh : description}
+                </p>
+
+                {/* 代码能力展示（可选) */}
+                {showTechDetails !== false && (
+                  <div className="grid grid-cols-2 gap-4 pt-4">
+                    <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-green-500/10 to-emerald-500/10 rounded-lg border border-green-500/20">
+                      <FaCode className="text-green-500 text-lg" />
+                      <div>
+                        <p className="text-sm font-medium text-gray-800 dark:text-gray-200">
+                          {activeLocale === "zh" ? t("frontend") : "Frontend"}
+                        </p>
+                        <p className="text-xs text-gray-600 dark:text-gray-400">
+                          {activeLocale === "zh" ? t("react_vue_typescript") : "React, Vue, TypeScript"}
+                        </p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 rounded-lg border border-blue-500/20">
+                      <FaServer className="text-blue-500 text-lg" />
+                      <div>
+                        <p className="text-sm font-medium text-gray-800 dark:text-gray-200">
+                          {activeLocale === "zh" ? t("backend") : "Backend"}
+                        </p>
+                        <p className="text-xs text-gray-600 dark:text-gray-400">
+                          {activeLocale === "zh" ? t("java_nodejs_apis") : "Java, Node.js, APIs"}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* 项目链接（可选） */}
+                {(hasCode !== false && (projectUrl || demoUrl)) && (
+                  <div className="flex gap-4 pt-4">
+                    {hasCode !== false && projectUrl && (
+                      <Link
+                        href={projectUrl}
+                        target="_blank"
+                        className="ios-button flex items-center gap-2 text-sm"
+                      >
+                        <FaGithubSquare />
+                        {activeLocale === "zh" ? t("view_code") : "View Code"}
+                      </Link>
+                    )}
+                    
+                    {hasCode !== false && demoUrl && (
+                      <Link
+                        href={demoUrl}
+                        target="_blank"
+                        className="ios-glass px-6 py-3 rounded-[16px] text-gray-700 dark:text-gray-300 hover:bg-white/20 dark:hover:bg-gray-800/20 transition-all duration-300 flex items-center gap-2 border border-white/20 dark:border-gray-700/30"
+                      >
+                        <FaExternalLinkAlt />
+                        {activeLocale === "zh" ? t("live_demo") : "Live Demo"}
+                      </Link>
+                    )}
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* 项目图片 */}
+            <div className="relative group">
+              <motion.div
+                className="relative overflow-hidden rounded-[20px] shadow-ios dark:shadow-ios-dark"
+                whileHover={{ scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300 }}
               >
-                <span className="break-keep">Code</span>
-
-                <FaGithubSquare className="w-5 h-5" />
-              </Link>
-              {demoUrl && (
-                <Link
-                  href={demoUrl}
-                  target="_blank"
-                  className=" w-full flex items-center gap-1 hover:underline underline-offset-2"
-                >
-                  <span className="break-keep min-w-[4.5rem]">Live demo</span>
-                  <FiExternalLink className="w-5 h-5 " />
-                </Link>
-              )}
+                <Image
+                  src={imageUrl}
+                  alt="Project I worked on"
+                  quality={95}
+                  className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                
+                {/* 图片覆盖层 */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                
+                {/* 技术指标（可选） */}
+                {hasCode !== false && (
+                  <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="flex justify-between items-center text-white text-sm">
+                      <span className="bg-black/50 px-3 py-1 rounded-full backdrop-blur-[10px]">
+                        {activeLocale === "zh" ? "性能: 95%" : "Performance: 95%"}
+                      </span>
+                      <span className="bg-black/50 px-3 py-1 rounded-full backdrop-blur-[10px]">
+                        {activeLocale === "zh" ? "代码质量: A+" : "Code Quality: A+"}
+                      </span>
+                    </div>
+                  </div>
+                )}
+              </motion.div>
             </div>
           </div>
-
-          <p className="mt-2 leading-relaxed text-gray-700 dark:text-white/70">
-            {activeLocale === "zh" ? desc_zh : description}
-          </p>
-          <ul className="flex flex-wrap mt-auto gap-2">
-            {tags.map((tag, index) => (
-              <li
-                className="bg-black/[0.7] px-3 py-1 text-[0.7rem] uppercase tracking-wider text-white rounded-full dark:text-white/70"
-                key={index}
-              >
-                {tag}
-              </li>
-            ))}
-          </ul>
         </div>
-
-        <Image
-          src={imageUrl}
-          alt="Project I worked on"
-          quality={95}
-          className="absolute hidden sm:block top-8 -right-40 w-[28.25rem] rounded-t-lg shadow-2xl
-        transition 
-        group-hover:scale-[1.04]
-        group-hover:-translate-x-3
-        group-hover:translate-y-3
-        group-hover:-rotate-2
-
-        group-even:group-hover:translate-x-3
-        group-even:group-hover:translate-y-3
-        group-even:group-hover:rotate-2
-
-        group-even:right-[initial] group-even:-left-40"
-        />
-      </section>
+      </TiltOnHover>
     </motion.div>
   )
 }

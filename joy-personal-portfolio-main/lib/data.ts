@@ -41,7 +41,7 @@ export const links = [
 export const headerLanguageMap = {
     Home: '首页',
     About: '关于我',
-    Projects: '我的爱好',
+    Projects: '相关能力展示',
     Skills: '我的技能',
     Experiences: '我的经历',
 }
@@ -72,6 +72,22 @@ export const experiencesData = [
         date: "2024.4 - 2025.11",
     },
     {
+        title: "Mianyang Hospital Companion System",
+        location: "Mobile Engineering Laboratory, Southwest University of Science and Technology",
+        description:
+            "To solve the problems of uneven distribution of companion resources for patients with difficult self-care in multiple hospitals in Mianyang City and information silos, independently designed and developed a B/S architecture resource allocation center. The system realized cross-institutional personnel information synchronization, intelligent dispatching, data dashboard and other functions, improving the utilization efficiency of regional medical resources.",
+        icon: React.createElement(FaJava),
+        date: "2023.2 - 2024.12",
+    },
+    {
+        title: "Intelligent Instant Messaging System",
+        location: "Southwest University of Science and Technology",
+        description:
+            "Independently designed and implemented a Java-based C/S architecture instant messaging system, simulating QQ core functions, including user management, one-on-one/group chat, online status synchronization, etc. Used thread pool and NIO model to handle high-concurrency client connections and message forwarding, and encapsulated message packets through custom protocols to ensure communication efficiency and reliability.",
+        icon: React.createElement(FaJava),
+        date: "2023.6 - 2024.2",
+    },
+    {
         title: "CSP200",
         location: "China",
         description:
@@ -99,11 +115,18 @@ export const experiencesDataZn = [
         "date": "2022年9月 - 2026年6月"
     },
     {
-        "title": "后端学员",
+        "title": "绵阳市医院陪护系统",
         "location": "西南科技大学移动工程实验室",
-        "description": `设计了后端的工资计算文档，通过与李绘卓老师的跟进，更新了网站的数据库，整合了金蝶api的工资发放以及几大银行的工资计算功能`,
+        "description": `为解决绵阳市多家医院难以自理病人陪护资源分配不均、信息孤岛等问题，独立设计并开发了一个B/S架构的资源调配中心。系统实现了跨机构的人员信息同步、智能派单、数据看板等功能，提升了区域医疗资源的利用效率。`,
         "icon": React.createElement(FaJava),
-        "date": "2024年6月 - 2025年12月"
+        "date": "2023年2月 - 2024年12月"
+    },
+    {
+        "title": "智能即时通讯系统",
+        "location": "西南科技大学",
+        "description": `独立设计并实现了一个基于Java的C/S架构即时通讯系统，模拟QQ核心功能，包括用户管理、单聊/群聊、在线状态同步等。采用线程池与NIO模型处理高并发客户端连接与消息转发，通过自定义协议封装消息包，保障通信效率与可靠性。`,
+        "icon": React.createElement(FaJava),
+        "date": "2023年6月 - 2024年2月"
     },
     {
         "title": "CSP200分",
@@ -125,27 +148,29 @@ export const experiencesDataZn = [
 export type ProjectTags = typeof projectsData[number]["tags"];
 
 export const projectsData = [
-    {
-        "title": "Digital media and light and shadow narrative expression",
-        "title_zh": "数字媒体与光影叙事表达",
-        "description":
-            "Photography is a visual language that blends art and technology, through the skillful use of light, color, and composition, the moment is solidified into a timeless artistic expression. It is not only a record of reality, but also a deep portrayal of emotions and thoughts, which can show the rich layers of the world in subtle ways. Photographers combine subjective feelings with objective reality through the lens to capture beauty and stories that are difficult for ordinary people to perceive.",
-        "desc_zh": "摄影是一门融合艺术与技术的视觉语言，通过光影、色彩与构图的巧妙运用，将瞬间凝固为永恒的艺术表达。它不仅仅是记录现实，更是对情感与思想的深度刻画，能在细微之处展现世界的丰富层次。摄影师通过镜头将主观感受与客观现实结合，捕捉到常人难以察觉的美与故事。",
-        "tags": ["Sony", "Canon"],
-        "imageUrl": moonImage,
-        "projectUrl": "qq.com",
-        "demoUrl": "https://baike.baidu.com/item/%E6%91%84%E5%BD%B1/6201#:~:text=%E6%91%84%E5%BD%B1%E6%98%AF%E6%8C%87%E4%BD%BF%E7%94%A8%E6%9F%90%E7%A7%8D%E4%B8%93%E9%97%A8%E8%AE%BE%E5%A4%87%E8%BF%9B%E8%A1%8C%E5%BD%B1%E5%83%8F%20%E8%AE%B0%E5%BD%95%20%E7%9A%84%E8%BF%87%E7%A8%8B%EF%BC%8C%E4%B8%80%E8%88%AC%E6%88%91%E4%BB%AC%E4%BD%BF%E7%94%A8%E6%9C%BA%E6%A2%B0%20%E7%85%A7%E7%9B%B8%E6%9C%BA%20%E6%88%96%E8%80%85%20%E6%95%B0%E7%A0%81%E7%85%A7%E7%9B%B8%E6%9C%BA,%E8%BF%9B%E8%A1%8C%E6%91%84%E5%BD%B1%E3%80%82%20%E6%9C%89%E6%97%B6%E6%91%84%E5%BD%B1%E4%B9%9F%E4%BC%9A%E8%A2%AB%E7%A7%B0%E4%B8%BA%20%E7%85%A7%E7%9B%B8%EF%BC%8C%E4%B9%9F%E5%B0%B1%E6%98%AF%E9%80%9A%E8%BF%87%E7%89%A9%E4%BD%93%E6%89%80%E5%8F%91%E5%B0%84%E6%88%96%E5%8F%8D%E5%B0%84%E7%9A%84%E5%85%89%E7%BA%BF%E4%BD%BF%20%E6%84%9F%E5%85%89%20%E4%BB%8B%E8%B4%A8%20%E6%9B%9D%E5%85%89%20%E7%9A%84%E8%BF%87%E7%A8%8B%E3%80%82"
-    },
-    {
-        title: "ACM",
-        title_zh: 'ACM',
-        description:"The Olympiad of computing, the pressure programming of a computer, completes some specific task points and test points within a certain period of time",
-        desc_zh: "计算机界的奥利匹克，计算机的压力编程，在一定时间内完成一些特定的任务点和测试点",
-        tags: ["ACM", "SCPC"],
-        imageUrl: scpcfunImage,
-        projectUrl: 'https://scpc.fun/',
-        demoUrl: 'https://baike.baidu.com/item/ACM%E5%9B%BD%E9%99%85%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E7%AB%9E%E8%B5%9B/3652262',
-    },
+	{
+		"title": "Personal Portfolio Website",
+		"title_zh": "个人介绍网页",
+		"description":
+			"A modern, responsive personal portfolio website built with Next.js, React, TypeScript, and Tailwind CSS. Features include internationalization (i18n), smooth animations, iOS-style frosted glass effects, and a professional design that showcases my development skills and experience.",
+		"desc_zh": "一个现代化的响应式个人介绍网页，使用Next.js、React、TypeScript和Tailwind CSS构建。功能包括国际化(i18n)、流畅动画、iOS风格毛玻璃效果，以及展示我开发技能和经验的专业设计。",
+		"tags": ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+		"imageUrl": moonImage,
+		"projectUrl": "https://github.com/creamywqeq/net",
+		"demoUrl": "https://net-red-one.vercel.app"
+	},
+	{
+		title: "ACM",
+		title_zh: 'ACM',
+		description:"Participated in multiple on-campus ACM competitions and won multiple awards in school and college competitions",
+		desc_zh: "在校内多次参加校内acm比赛并且多次拿到校赛院赛多个奖项",
+		tags: ["ACM", "SCPC"],
+		imageUrl: scpcfunImage,
+		projectUrl: '',
+		demoUrl: '',
+		showTechDetails: false,
+		hasCode: false,
+	},
 ]
 
 export const skillsData = [
