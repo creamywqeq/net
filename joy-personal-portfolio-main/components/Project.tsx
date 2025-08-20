@@ -4,7 +4,7 @@ import { useRef } from "react"
 import { projectsData } from "@/lib/data"
 import Image from "next/image"
 import { motion, useScroll, useTransform } from "framer-motion"
-import { FaGithubSquare, FaExternalLinkAlt, FaCode, FaDatabase, FaServer } from "react-icons/fa"
+import { FaGithubSquare, FaExternalLinkAlt, FaCode, FaServer } from "react-icons/fa"
 import Link from "next/link"
 import { useLocale } from "next-intl"
 import { useTranslations } from "next-intl"
@@ -33,6 +33,10 @@ export default function Project({
   const opacityProgess = useTransform(scrollYProgress, [0, 1], [0.6, 1])
   const activeLocale = useLocale()
   const t = useTranslations("ProjectsSection")
+
+  // 使用空值合并，避免字面量比较导致的TS错误，并明确默认显示策略
+  const isCodeAvailable = hasCode ?? true
+  const shouldShowTechDetails = showTechDetails ?? true
 
   return (
     <motion.div
@@ -79,7 +83,7 @@ export default function Project({
                 </p>
 
                 {/* 代码能力展示（可选) */}
-                {showTechDetails !== false && (
+                {shouldShowTechDetails && (
                   <div className="grid grid-cols-2 gap-4 pt-4">
                     <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-green-500/10 to-emerald-500/10 rounded-lg border border-green-500/20">
                       <FaCode className="text-green-500 text-lg" />
@@ -108,9 +112,9 @@ export default function Project({
                 )}
 
                 {/* 项目链接（可选） */}
-                {(hasCode !== false && (projectUrl || demoUrl)) && (
+                {isCodeAvailable && (projectUrl || demoUrl) && (
                   <div className="flex gap-4 pt-4">
-                    {hasCode !== false && projectUrl && (
+                    {isCodeAvailable && projectUrl && (
                       <Link
                         href={projectUrl}
                         target="_blank"
@@ -121,7 +125,7 @@ export default function Project({
                       </Link>
                     )}
                     
-                    {hasCode !== false && demoUrl && (
+                    {isCodeAvailable && demoUrl && (
                       <Link
                         href={demoUrl}
                         target="_blank"
@@ -154,7 +158,7 @@ export default function Project({
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 
                 {/* 技术指标（可选） */}
-                {hasCode !== false && (
+                {isCodeAvailable && (
                   <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <div className="flex justify-between items-center text-white text-sm">
                       <span className="bg-black/50 px-3 py-1 rounded-full backdrop-blur-[10px]">
