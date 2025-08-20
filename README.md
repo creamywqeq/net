@@ -8,7 +8,7 @@
 
 ---
 
-## 特性概览
+# 特性概览
 
 - iOS 风格视觉语言
   - 毛玻璃卡片（ios-glass）、柔和阴影（shadow-ios）、渐变文字（text-gradient）
