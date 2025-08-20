@@ -31,10 +31,6 @@ export const links = [
         name: "Experiences",
         hash: "#experience",
     },
-    // {
-    //     name: "Contact",
-    //     hash: "#contact",
-    // },
 ] as const;
 
 
@@ -59,11 +55,6 @@ export const experiencesData = [
         title: "Frontend Intern",
         location: React.createElement(
             "span", {},
-            // React.createElement("a", {
-            //     href: "https://www.nio.com/",
-            //     style: { textDecoration: 'underline' },
-            //     target: "_blank"
-            // }, "NIO Inc."),
             " Mobile Engineering Laboratory, Southwest University of Science and Technology"
         ),
         description:
@@ -95,15 +86,6 @@ export const experiencesData = [
         icon: React.createElement(FaC),
         date: "2022 May - 2022 July",
     },
-    // {
-    //     title: "BA in Digital Publishing",
-    //     location: "Wuhan University, China",
-    //     description:
-    //         "Graduated with a Bachelor of Arts in Digital Publishing, securing a GPA of 3.81/4.0. Gained foundational knowledge in digital media and publishing technologies.",
-    //     icon: React.createElement(LuGraduationCap),
-    //     date: "2019 Sep - 2023 Jun",
-    // },
-
 ]
 
 export const experiencesDataZn = [

@@ -8,7 +8,6 @@ import ThemeSwitch from "@/components/ThemeTwich"
 import ThemeAnimation from "@/components/ThemeAnimation"
 import CursorSpotlight from "@/components/CursorSpotlight"
 import ScrollProgressBar from "@/components/ScrollProgressBar"
-// import { usePathname } from "next/navigation"
 import LanguageSwitch from "@/components/LanguageSwitch"
 import { NextIntlClientProvider, useMessages } from "next-intl"
 import WidgetWrapper from "@/components/WidgetWrapper"
@@ -23,8 +22,6 @@ export default function RootLayout({
   params: { locale: string }
 }) {
   const messages = useMessages()
-  // const pathname = usePathname()
-  // const isProjectDetail = pathname.includes("projects")
   return (
     <html lang={locale} className="!scroll-smooth">
       <body

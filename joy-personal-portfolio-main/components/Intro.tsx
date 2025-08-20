@@ -27,14 +27,13 @@ export default function Intro() {
       id="home"
     >
       {/* iOS风格的背景装饰 */}
-      <div className="absolute inset-0 -z-10 overflow-hidden">
+      <div className={`${activeLocale === "zh" ? "fixed" : "absolute"} inset-0 -z-10 overflow-hidden pointer-events-none`}>
         <div className="absolute top-20 left-1/4 w-72 h-72 bg-gradient-to-br from-blue-400/20 to-purple-500/20 rounded-full blur-3xl animate-float" />
         <div className="absolute bottom-20 right-1/4 w-96 h-96 bg-gradient-to-br from-purple-400/20 to-pink-500/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
       </div>
 
       <div className="flex items-center justify-center mb-8">
         <div className="relative">
-          {/* iOS风格的毛玻璃头像容器 */}
           <div className="relative p-2 ios-glass rounded-[24px]">
             <Image
               src="/proflie.jpg"
@@ -47,10 +46,8 @@ export default function Intro() {
             />
           </div>
           
-          {/* iOS风格的问候表情 */}
           <span
             onMouseEnter={() => {
-              console.log("sound")
               playHover()
             }}
             className="absolute text-4xl bottom-2 right-2 ios-glass rounded-full p-2 shadow-ios dark:shadow-ios-dark cursor-pointer hover:scale-125 hover:rotate-15 transition-all duration-300"
