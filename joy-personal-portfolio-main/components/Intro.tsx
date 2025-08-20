@@ -74,40 +74,37 @@ export default function Intro() {
         <span className={`${sourceCodePro.className} text-sm tracking-wider `}>
           {t("hello_im")}
         </span>
-        <motion.div
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
-          className="col-span-8 place-self-center text-center sm:text-left justify-self-start"
-        >
-          <h1 className="text-center text-4xl font-bold tracking-tight  sm:text-5xl">
-            {t("name")}
-          </h1>
+        
+        {/* 名字部分 - 静态，不会动 */}
+        <h1 className="text-center text-4xl font-bold tracking-tight sm:text-5xl mb-4">
+          {t("name")}
+        </h1>
 
-          <div className="text-center">
-            <span
-              className={`${sourceCodePro.className} text-sm tracking-wider`}
-            >
-              I&apos;m a{" "}
-            </span>
-            <h2
-              id="name"
-              className=" text-center  text-2xl  sm:text-5xl lg:text-4xl lg:leading-normal font-extrabold"
-            >
-              <TypeAnimation
-                sequence={[
-                  "Light Catcher",
-                  1000,
-                  "Landscape photographer",
-                  1000,
-                ]}
-                wrapper="span"
-                speed={50}
-                repeat={Infinity}
-              />
-            </h2>
-          </div>
-        </motion.div>
+        {/* 打字动画部分 - 只有这部分会动 */}
+        <div className="text-center mb-4">
+          <span
+            className={`${sourceCodePro.className} text-sm tracking-wider`}
+          >
+            I&apos;m a{" "}
+          </span>
+          <h2
+            id="name"
+            className="text-center text-2xl sm:text-5xl lg:text-4xl lg:leading-normal font-extrabold"
+          >
+            <TypeAnimation
+              sequence={[
+                "Light Catcher",
+                1000,
+                "Landscape photographer",
+                1000,
+              ]}
+              wrapper="span"
+              speed={50}
+              repeat={Infinity}
+            />
+          </h2>
+        </div>
+        
         <p>{t("short_intro")}</p>
         {activeLocale === "en" && (
           <p>
