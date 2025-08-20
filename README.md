@@ -2,7 +2,6 @@
 
 一个现代、优雅、强交互的个人作品集网站。项目采用 Next.js 14、TypeScript、Tailwind CSS 与 Framer Motion，整体视觉以 iOS 质感为参考，包含毛玻璃、柔和阴影、渐变文字、丝滑交互与中文/英文双语切换。
 
-线上地址：`https://net-red-one.vercel.app`
 代码仓库：`https://github.com/creamywqeq/net`
 
 > 提示：本项目默认中文为主界面（zh），并保证中文界面仅展示中文内容。
